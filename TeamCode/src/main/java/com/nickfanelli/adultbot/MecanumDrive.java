@@ -24,7 +24,7 @@ public class MecanumDrive extends LinearOpMode {
 
         IMU imu = hardwareMap.get(IMU.class, "imu");
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
-                RevHubOrientationOnRobot.LogoFacingDirection.RIGHT, RevHubOrientationOnRobot.UsbFacingDirection.UP));
+                RevHubOrientationOnRobot.LogoFacingDirection.UP, RevHubOrientationOnRobot.UsbFacingDirection.RIGHT));
         imu.initialize(parameters);
 
         DcMotorEx fl = super.hardwareMap.get(DcMotorEx.class, "fl");
@@ -32,7 +32,8 @@ public class MecanumDrive extends LinearOpMode {
         DcMotorEx bl = super.hardwareMap.get(DcMotorEx.class, "bl");
         DcMotorEx br = super.hardwareMap.get(DcMotorEx.class, "br");
 
-        br.setDirection(DcMotorSimple.Direction.REVERSE);
+        fl.setDirection(DcMotorSimple.Direction.REVERSE);
+        bl.setDirection(DcMotorSimple.Direction.REVERSE);
 
         waitForStart();
 
