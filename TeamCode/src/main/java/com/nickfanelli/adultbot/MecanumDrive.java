@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
-@TeleOp(name="Teleop")
+@TeleOp(name="Mecanum Teleop")
 public class MecanumDrive extends LinearOpMode {
 
     public static final int DRIVER_CONTROLLER_EASE_POW = 1;
@@ -34,6 +34,7 @@ public class MecanumDrive extends LinearOpMode {
 
         fl.setDirection(DcMotorSimple.Direction.REVERSE);
         bl.setDirection(DcMotorSimple.Direction.REVERSE);
+        fr.setDirection(DcMotorSimple.Direction.REVERSE);
 
         waitForStart();
 
