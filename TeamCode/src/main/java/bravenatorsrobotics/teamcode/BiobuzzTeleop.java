@@ -31,7 +31,7 @@ public class BiobuzzTeleop extends AbstractTeleop {
         this.intakeToggleControl = new SingleMotorToggleTeleopControl(
                 this, // Current opMode required
                 intakeMotor, // The motor you want to toggle
-                super.operatorGamepad, // What gamepad you want to control this toggle
+                super.driverGamepad, // What gamepad you want to control this toggle
                 FtcGamePad.GAMEPAD_A // The button you want to toggle
         );
 
