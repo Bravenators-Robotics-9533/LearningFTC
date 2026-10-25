@@ -11,17 +11,13 @@ public class MecanumDrive extends AbstractDrive {
     private DcMotorEx bl;
     private DcMotorEx br;
 
-    public MecanumDrive(HardwareMap hardwareMap) {
-        super(hardwareMap);
-    }
-
     @Override
-    public void initializeDrive() {
+    public void initializeDrive(HardwareMap hardwareMap) {
 
-        this.fl = super.hardwareMap.get(DcMotorEx.class, "fl");
-        this.fr = super.hardwareMap.get(DcMotorEx.class, "fr");
-        this.bl = super.hardwareMap.get(DcMotorEx.class, "bl");
-        this.br = super.hardwareMap.get(DcMotorEx.class, "br");
+        this.fl = hardwareMap.get(DcMotorEx.class, "fl");
+        this.fr = hardwareMap.get(DcMotorEx.class, "fr");
+        this.bl = hardwareMap.get(DcMotorEx.class, "bl");
+        this.br = hardwareMap.get(DcMotorEx.class, "br");
 
     }
 

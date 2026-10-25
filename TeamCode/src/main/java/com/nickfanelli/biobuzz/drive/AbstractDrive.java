@@ -5,17 +5,11 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public abstract class AbstractDrive {
 
-    protected final HardwareMap hardwareMap;
-
-    public AbstractDrive(HardwareMap hardwareMap) {
-        this.hardwareMap = hardwareMap;
-    }
-
     /**
      * Must be called before running any drive code (initializes drive)
      *
      */
-    public abstract void initializeDrive();
+    public abstract void initializeDrive(HardwareMap hardwareMap);
 
     /**
      * Drives the robot manually based on the params
