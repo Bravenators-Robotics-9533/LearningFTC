@@ -24,7 +24,7 @@ public class BiobuzzTeleop extends AbstractTeleop {
     public void onInitialize() {
         DcMotorEx intakeMotor = super.hardwareMap.get(DcMotorEx.class, "intake");
 
-        this.drive.initializeDrive(super.hardwareMap);
+        this.drive.initializeDrive(super.hardwareMap, false, true, true, true);
         this.mecanumDriveControl = new MecanumDriveTeleopControl(this, this.drive);
 
         // Example for Toggleable Control
