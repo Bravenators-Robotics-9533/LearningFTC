@@ -76,7 +76,7 @@ public abstract class AbstractTeleop extends LinearOpMode {
     }
 
     private void operatorGamePadEvent(FtcGamePad gamepad, int button, boolean pressed) {
-        this.onDriverGamePadEvent(button, pressed);
+        this.onOperatorGamePadEvent(button, pressed);
 
         for(IGamePadEventHandler handler : this.operatorGamePadSubscribers) {
             handler.onGamepadButtonEvent(button, pressed);
