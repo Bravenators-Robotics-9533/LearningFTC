@@ -55,11 +55,11 @@ public abstract class AbstractTeleop extends LinearOpMode {
 
             this.lynxModules.forEach(LynxModule::clearBulkCache); // FIRST RESET LYNX-MOD CACHE
 
+            this.onUpdate();
+
             // Update GamePads
             this.driverGamepad.update();
             this.operatorGamepad.update();
-
-            this.onUpdate();
 
         }
 
