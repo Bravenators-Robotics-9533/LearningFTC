@@ -40,7 +40,7 @@ public class SingleMotorToggleTeleopControl extends AbstractTeleopControl implem
     public void onGamepadButtonEvent(int button, boolean isPressed) {
 
         // If the current button changed & not pressed (meaning if the button was released)
-        if(button == this.button && !isPressed) {
+        if(button == this.button && isPressed) {
             this.isRunning = !this.isRunning; // Toggle
         }
 
