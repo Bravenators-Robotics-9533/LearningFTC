@@ -43,8 +43,8 @@ public class MecanumDrive extends AbstractDrive {
      * @param r rotate clockwise (+) / counterclockwise (-)
      */
     public void drive(double x, double y, double r) {
-        double frontLeftPower  = y + x + r;
-        double frontRightPower = y - x - r;
+        double frontLeftPower  = -y + x + r;
+        double frontRightPower = -y - x - r;
         double backLeftPower   = y - x + r;
         double backRightPower  = y + x - r;
 
