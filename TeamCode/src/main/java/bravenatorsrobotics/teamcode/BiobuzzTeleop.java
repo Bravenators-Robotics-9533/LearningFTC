@@ -14,7 +14,9 @@ public class BiobuzzTeleop extends AbstractTeleop {
     private final MecanumDrive drive;
 
     private MecanumDriveTeleopControl mecanumDriveControl;
-    private SingleMotorToggleTeleopControl intakeToggleControl;
+//    private SingleMotorToggleTeleopControl intakeToggleControl;
+
+    private DcMotorEx intakeMotor;
 
     public BiobuzzTeleop() {
         this.drive = new MecanumDrive();
@@ -22,18 +24,19 @@ public class BiobuzzTeleop extends AbstractTeleop {
 
     @Override
     public void onInitialize() {
-        DcMotorEx intakeMotor = super.hardwareMap.get(DcMotorEx.class, "intake");
+
+        this.intakeMotor = super.hardwareMap.get(DcMotorEx.class, "intake");
 
         this.drive.initializeDrive(super.hardwareMap, false, true, true, true);
         this.mecanumDriveControl = new MecanumDriveTeleopControl(this, this.drive);
-
-        // Example for Toggleable Control
-        this.intakeToggleControl = new SingleMotorToggleTeleopControl(
-                this, // Current opMode required
-                intakeMotor, // The motor you want to toggle
-                super.driverGamepad, // What gamepad you want to control this toggle
-                FtcGamePad.GAMEPAD_A // The button you want to toggle
-        );
+//
+//        // Example for Toggleable Control
+//        this.intakeToggleControl = new SingleMotorToggleTeleopControl(
+//                this, // Current opMode required
+//                intakeMotor, // The motor you want to toggle
+//                super.driverGamepad, // What gamepad you want to control this toggle
+//                FtcGamePad.GAMEPAD_A // The button you want to toggle
+//        );
 
     }
 
@@ -46,7 +49,9 @@ public class BiobuzzTeleop extends AbstractTeleop {
     public void onUpdate() {
 
         this.mecanumDriveControl.update();
-        this.intakeToggleControl.update();
+//        this.intakeToggleControl.update();
+
+        this.intakeMotor.setPower(this.gamepad1.a ? 1.0 : 0.0);
 
     }
 
