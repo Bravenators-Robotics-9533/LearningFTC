@@ -37,16 +37,16 @@ public class MecanumDrive extends AbstractDrive {
     @Override public void drive(double y, double r) { this.drive(0, y, r); }
 
     /**
-     * Drives from x strafe, y forward and backwards, and rotate clockwise and counter-clockwise
-     * @param x strafe right (+) / left (-)
-     * @param y forward (+) / backward (-)
+     * Drives from r strafe, y forward and backwards, and rotate clockwise and counter-clockwise
      * @param r rotate clockwise (+) / counterclockwise (-)
+     * @param y forward (+) / backward (-)
+     * @param x strafe right (+) / left (-)
      */
     public void drive(double x, double y, double r) {
-        double frontLeftPower  = -y + x + r;
-        double frontRightPower = -y - x - r;
-        double backLeftPower   = y - x + r;
-        double backRightPower  = y + x - r;
+        double frontLeftPower  = -y + r + x;
+        double frontRightPower = -y - r - x;
+        double backLeftPower   = y - r + x;
+        double backRightPower  = y + r - x;
 
         // Normalize motor powers
         double max = Math.max(
