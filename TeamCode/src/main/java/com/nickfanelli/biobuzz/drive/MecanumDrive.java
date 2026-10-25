@@ -2,6 +2,7 @@ package com.nickfanelli.biobuzz.drive;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class MecanumDrive extends AbstractDrive {
@@ -13,11 +14,23 @@ public class MecanumDrive extends AbstractDrive {
 
     @Override
     public void initializeDrive(HardwareMap hardwareMap) {
+        this.fl = hardwareMap.get(DcMotorEx.class, "fl");
+        this.fr = hardwareMap.get(DcMotorEx.class, "fr");
+        this.bl = hardwareMap.get(DcMotorEx.class, "bl");
+        this.br = hardwareMap.get(DcMotorEx.class, "br");
+    }
+
+    public void initializeDrive(HardwareMap hardwareMap, boolean isFlReversed, boolean isFrReversed, boolean isBlReversed, boolean isBrReversed) {
 
         this.fl = hardwareMap.get(DcMotorEx.class, "fl");
         this.fr = hardwareMap.get(DcMotorEx.class, "fr");
         this.bl = hardwareMap.get(DcMotorEx.class, "bl");
         this.br = hardwareMap.get(DcMotorEx.class, "br");
+
+        this.fl.setDirection(isFlReversed ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
+        this.bl.setDirection(isBlReversed ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
+        this.br.setDirection(isBrReversed ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
+        this.fr.setDirection(isFrReversed ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
 
     }
 
