@@ -2,9 +2,7 @@ package bravenatorsrobotics.teamcode;
 
 import com.nickfanelli.biobuzz.AbstractTeleop;
 import com.nickfanelli.biobuzz.drive.MecanumDrive;
-import com.nickfanelli.biobuzz.gamepad.FtcGamePad;
 import com.nickfanelli.biobuzz.teleopControls.MecanumDriveTeleopControl;
-import com.nickfanelli.biobuzz.teleopControls.SingleMotorToggleTeleopControl;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
@@ -29,8 +27,8 @@ public class BiobuzzTeleop extends AbstractTeleop {
 
         this.drive.initializeDrive(super.hardwareMap, false, true, true, true);
         this.mecanumDriveControl = new MecanumDriveTeleopControl(this, this.drive);
-//
-//        // Example for Toggleable Control
+
+//        Example for Toggleable Control
 //        this.intakeToggleControl = new SingleMotorToggleTeleopControl(
 //                this, // Current opMode required
 //                intakeMotor, // The motor you want to toggle

@@ -79,3 +79,7 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+# TeleOp & Autonomous Code
+TeamCode/src/main/java/bravenatorsrobotics/teamcode/BiobuzzTeleop.java
+TeamCode/src/main/java/bravenatorsrobotics/teamcode/BiobuzzAutonomous.java
