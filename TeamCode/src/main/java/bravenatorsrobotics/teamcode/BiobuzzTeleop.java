@@ -5,6 +5,7 @@ import com.nickfanelli.biobuzz.drive.MecanumDrive;
 import com.nickfanelli.biobuzz.teleopControls.MecanumDriveTeleopControl;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp(name="BiobuzzTeleop", group="nickfanelli.teaching")
@@ -32,6 +33,7 @@ public class BiobuzzTeleop extends AbstractTeleop {
     public void onInitialize() {
 
         this.intakeMotor = super.hardwareMap.get(DcMotorEx.class, "intake");
+        this.intakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         this.launcherMotor = super.hardwareMap.get(DcMotorEx.class, "launcher");
 
         this.drive.initializeDrive(super.hardwareMap, false, true, true, true);
@@ -57,20 +59,24 @@ public class BiobuzzTeleop extends AbstractTeleop {
 
         this.mecanumDriveControl.update();
 
-        this.intakeMotor.setPower(this.gamepad2.a ? -1.0 : 0.0);
+        if(this.gamepad2.a) {
+            this.intakeMotor.setPower(1.0);
+            this.leftControlServo.setPosition(0.0);
+            this.rightControlServo.setPosition(1.0);
+        } else {
+            this.intakeMotor.setPower(0.0);
+            this.leftControlServo.setPosition(0.5);
+            this.rightControlServo.setPosition(0.5);
+        }
 
         if(gamepad2.b) {
             this.launcherMotor.setVelocity(LAUNCHER_VELOCITY);
 
-            this.leftControlServo.setPosition(0.0);
-            this.rightControlServo.setPosition(1.0);
             this.finalLeftControlServo.setPosition(0.0);
             this.finalRightControlServo.setPosition(0.0);
         } else {
             this.launcherMotor.setPower(0.0);
 
-            this.leftControlServo.setPosition(0.5);
-            this.rightControlServo.setPosition(0.5);
             this.finalLeftControlServo.setPosition(0.5);
             this.finalRightControlServo.setPosition(0.5);
         }
