@@ -2,7 +2,6 @@ package bravenatorsrobotics.teamcode;
 
 import com.nickfanelli.biobuzz.AbstractAutonomous;
 import com.nickfanelli.biobuzz.drive.AutonomousMecanumDrive;
-import com.nickfanelli.biobuzz.drive.MecanumDrive;
 import com.nickfanelli.biobuzz.drive.TurnDirection;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -12,7 +11,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 @Autonomous(name="BiobuzzAutonomous", group="nickfanelli.teaching")
 public class BiobuzzAutonomous extends AbstractAutonomous {
 
-    private static final double LAUNCHER_VELOCITY = 1200; // rpm
+    private static final double LAUNCHER_VELOCITY = 1100; // rpm
 
     private AutonomousMecanumDrive drive;
 
@@ -21,6 +20,8 @@ public class BiobuzzAutonomous extends AbstractAutonomous {
 
     private Servo leftControlServo;
     private Servo rightControlServo;
+    private Servo finalLeftControlServo;
+    private Servo finalRightControlServo;
 
     @Override
     public void onInitialize() {
@@ -34,6 +35,11 @@ public class BiobuzzAutonomous extends AbstractAutonomous {
         this.leftControlServo = super.hardwareMap.get(Servo.class, "lcServo");
         this.rightControlServo = super.hardwareMap.get(Servo.class, "rcServo");
 
+        this.finalLeftControlServo = super.hardwareMap.get(Servo.class, "flServo");
+        this.finalLeftControlServo.setDirection(Servo.Direction.REVERSE);
+
+        this.finalRightControlServo = super.hardwareMap.get(Servo.class, "frServo");
+
     }
 
     @Override
@@ -46,25 +52,48 @@ public class BiobuzzAutonomous extends AbstractAutonomous {
     @Override
     public void onStart() {
 
-        this.drive.driveByInches(0.5, 8); // Move off wall
+        this.drive.driveByInches(1.0, 8); // Move off wall
 
-        this.drive.turnByDegrees(0.5, TurnDirection.CLOCKWISE, 90);
+        this.drive.turnByDegrees(1.0, TurnDirection.CLOCKWISE, 90);
 
-        this.drive.driveByInches(0.5, 26); // Move to shoot location
+        this.drive.driveByInches(1.0, 26); // Move to shoot location
+
+        this.drive.turnByDegrees(1.0, TurnDirection.COUNTER_CLOCKWISE, 90); // Turn to shoot
 
         this.launcherMotor.setVelocity(LAUNCHER_VELOCITY);
 
-        this.drive.turnByDegrees(0.5, TurnDirection.COUNTER_CLOCKWISE, 90); // Turn to shoot
+        this.drive.driveByInches(1.0, -5.0); // Back Up
 
         // Turn on all intake components
         this.leftControlServo.setPosition(0.0);
         this.rightControlServo.setPosition(1.0);
+        this.finalLeftControlServo.setPosition(0.0);
+        this.finalRightControlServo.setPosition(0.0);
         this.intakeMotor.setPower(1.0);
 
-        waitMillis(7500);
+        waitMillis(10000);
 
-//        this.drive.driveByInches(0.5, 48);
-//        this.drive.turnByDegrees(0.5, 180);
+        // Turn off all intake components
+        this.leftControlServo.setPosition(0.5);
+        this.rightControlServo.setPosition(0.5);
+        this.finalLeftControlServo.setPosition(0.5);
+        this.finalRightControlServo.setPosition(0.5);
+        this.intakeMotor.setPower(0.0);
+        this.launcherMotor.setPower(0.0);
+
+        this.drive.turnByDegrees(1.0, TurnDirection.COUNTER_CLOCKWISE, 90);
+
+        this.drive.driveByInches(1.0, 24.0); // Drive to Park Location
+
+        this.drive.turnByDegrees(1.0, TurnDirection.CLOCKWISE, 90);
+
+        this.drive.driveByInches(1.0, 74.0); // Drive to Park Location
+
+        this.drive.turnByDegrees(1.0, TurnDirection.COUNTER_CLOCKWISE, 90);
+
+        this.drive.driveByInches(1.0, 16.0); // Drive to Park Location
+
+
 
     }
 

@@ -21,7 +21,8 @@ public class BiobuzzTeleop extends AbstractTeleop {
 
     private Servo leftControlServo;
     private Servo rightControlServo;
-    private Servo backControlServo;
+    private Servo finalLeftControlServo;
+    private Servo finalRightControlServo;
 
     public BiobuzzTeleop() {
         this.drive = new MecanumDrive();
@@ -38,7 +39,11 @@ public class BiobuzzTeleop extends AbstractTeleop {
 
         this.leftControlServo = super.hardwareMap.get(Servo.class, "lcServo");
         this.rightControlServo = super.hardwareMap.get(Servo.class, "rcServo");
-        this.backControlServo = super.hardwareMap.get(Servo.class, "bcServo");
+
+        this.finalLeftControlServo = super.hardwareMap.get(Servo.class, "flServo");
+        this.finalLeftControlServo.setDirection(Servo.Direction.REVERSE);
+
+        this.finalRightControlServo = super.hardwareMap.get(Servo.class, "frServo");
 
     }
 
@@ -52,18 +57,22 @@ public class BiobuzzTeleop extends AbstractTeleop {
 
         this.mecanumDriveControl.update();
 
-        this.intakeMotor.setPower(this.gamepad1.a ? -1.0 : 0.0);
+        this.intakeMotor.setPower(this.gamepad2.a ? -1.0 : 0.0);
 
-        if(gamepad1.b) {
+        if(gamepad2.b) {
             this.launcherMotor.setVelocity(LAUNCHER_VELOCITY);
 
             this.leftControlServo.setPosition(0.0);
             this.rightControlServo.setPosition(1.0);
+            this.finalLeftControlServo.setPosition(0.0);
+            this.finalRightControlServo.setPosition(0.0);
         } else {
             this.launcherMotor.setPower(0.0);
 
             this.leftControlServo.setPosition(0.5);
             this.rightControlServo.setPosition(0.5);
+            this.finalLeftControlServo.setPosition(0.5);
+            this.finalRightControlServo.setPosition(0.5);
         }
 
     }
