@@ -7,10 +7,10 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class MecanumDrive extends AbstractDrive {
 
-    private DcMotorEx fl;
-    private DcMotorEx fr;
-    private DcMotorEx bl;
-    private DcMotorEx br;
+    protected DcMotorEx fl;
+    protected DcMotorEx fr;
+    protected DcMotorEx bl;
+    protected DcMotorEx br;
 
     @Override
     public void initializeDrive(HardwareMap hardwareMap) {

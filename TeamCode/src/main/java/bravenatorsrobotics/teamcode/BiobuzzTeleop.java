@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 @TeleOp(name="BiobuzzTeleop", group="nickfanelli.teaching")
 public class BiobuzzTeleop extends AbstractTeleop {
 
-    private static final double LAUNCHER_VELOCITY = 1300; // rpm =
+    private static final double LAUNCHER_VELOCITY = 1200; // rpm =
 
     private final MecanumDrive drive;
 
