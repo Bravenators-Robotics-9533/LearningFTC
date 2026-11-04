@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Autonomous(name="BiobuzzAutonomous", group="nickfanelli.teaching")
-public class BiobuzzAutonomous extends AbstractAutonomous {
+@Autonomous(name="RIGHT BiobuzzAutonomous", group="nickfanelli.teaching")
+public class BiobuzzAutonomousRight extends AbstractAutonomous {
 
     private static final double LAUNCHER_VELOCITY = 1100; // rpm
 
@@ -54,11 +54,11 @@ public class BiobuzzAutonomous extends AbstractAutonomous {
 
         this.drive.driveByInches(1.0, 8); // Move off wall
 
-        this.drive.turnByDegrees(1.0, TurnDirection.CLOCKWISE, 90);
+        this.drive.turnByDegrees(1.0, TurnDirection.COUNTER_CLOCKWISE, 90);
 
         this.drive.driveByInches(1.0, 26); // Move to shoot location
 
-        this.drive.turnByDegrees(1.0, TurnDirection.COUNTER_CLOCKWISE, 90); // Turn to shoot
+        this.drive.turnByDegrees(1.0, TurnDirection.CLOCKWISE, 90); // Turn to shoot
 
         this.launcherMotor.setVelocity(LAUNCHER_VELOCITY);
 
@@ -81,15 +81,15 @@ public class BiobuzzAutonomous extends AbstractAutonomous {
         this.intakeMotor.setPower(0.0);
         this.launcherMotor.setPower(0.0);
 
-        this.drive.turnByDegrees(1.0, TurnDirection.COUNTER_CLOCKWISE, 90);
+        this.drive.turnByDegrees(1.0, TurnDirection.CLOCKWISE, 90);
 
         this.drive.driveByInches(1.0, 24.0); // Drive to Park Location
 
-        this.drive.turnByDegrees(1.0, TurnDirection.CLOCKWISE, 90);
+        this.drive.turnByDegrees(1.0, TurnDirection.COUNTER_CLOCKWISE, 90);
 
         this.drive.driveByInches(1.0, 74.0); // Drive to Park Location
 
-        this.drive.turnByDegrees(1.0, TurnDirection.COUNTER_CLOCKWISE, 90);
+        this.drive.turnByDegrees(1.0, TurnDirection.CLOCKWISE, 90);
 
         this.drive.driveByInches(1.0, 16.0); // Drive to Park Location
 
