@@ -27,6 +27,8 @@ public class BiobuzzTeleop extends AbstractTeleop {
     private Servo finalLeftControlServo;
     private Servo finalRightControlServo;
 
+    private Servo tailServo;
+
     public BiobuzzTeleop() {
         this.drive = new MecanumDrive();
     }
@@ -51,6 +53,8 @@ public class BiobuzzTeleop extends AbstractTeleop {
         this.finalLeftControlServo.setDirection(Servo.Direction.REVERSE);
 
         this.finalRightControlServo = super.hardwareMap.get(Servo.class, "frServo");
+
+        this.tailServo = super.hardwareMap.get(Servo.class, "tail");
 
     }
 
@@ -99,9 +103,23 @@ public class BiobuzzTeleop extends AbstractTeleop {
 
     }
 
+    private boolean isTailToggled = false;
+
     @Override
     public void onOperatorGamePadEvent(int button, boolean isPressed) {
 
+        switch(button) {
+
+            case FtcGamePad.GAMEPAD_Y:
+
+                if (isPressed) {
+                    this.tailServo.setPosition(isTailToggled ? 0.25 : 0.9);
+                    isTailToggled = !isTailToggled;
+                }
+
+                break;
+
+        }
 
     }
 
