@@ -7,11 +7,12 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.nickfanelli.biobuzz.gamepad.FtcGamePad;
 
 @TeleOp(name="BiobuzzTeleop", group="nickfanelli.teaching")
 public class BiobuzzTeleop extends AbstractTeleop {
 
-    private static final double LAUNCHER_VELOCITY = 1200; // rpm =
+    private static final double LAUNCHER_VELOCITY = 1275; // rpm =
 
     private final MecanumDrive drive;
 
@@ -19,6 +20,7 @@ public class BiobuzzTeleop extends AbstractTeleop {
 
     private DcMotorEx intakeMotor;
     private DcMotorEx launcherMotor;
+    private DcMotorEx secondaryIntakeMotor;
 
     private Servo leftControlServo;
     private Servo rightControlServo;
@@ -34,6 +36,9 @@ public class BiobuzzTeleop extends AbstractTeleop {
 
         this.intakeMotor = super.hardwareMap.get(DcMotorEx.class, "intake");
         this.intakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        this.secondaryIntakeMotor = super.hardwareMap.get(DcMotorEx.class, "intake2");
+
         this.launcherMotor = super.hardwareMap.get(DcMotorEx.class, "launcher");
 
         this.drive.initializeDrive(super.hardwareMap, false, true, true, true);
@@ -61,12 +66,8 @@ public class BiobuzzTeleop extends AbstractTeleop {
 
         if(this.gamepad2.a) {
             this.intakeMotor.setPower(1.0);
-            this.leftControlServo.setPosition(0.0);
-            this.rightControlServo.setPosition(1.0);
         } else {
             this.intakeMotor.setPower(0.0);
-            this.leftControlServo.setPosition(0.5);
-            this.rightControlServo.setPosition(0.5);
         }
 
         if(gamepad2.b) {
@@ -81,6 +82,16 @@ public class BiobuzzTeleop extends AbstractTeleop {
             this.finalRightControlServo.setPosition(0.5);
         }
 
+        if(this.gamepad2.b || this.gamepad2.a) {
+            this.secondaryIntakeMotor.setPower(1.0);
+            this.leftControlServo.setPosition(0.0);
+            this.rightControlServo.setPosition(1.0);
+        } else {
+            this.secondaryIntakeMotor.setPower(0.0);
+            this.leftControlServo.setPosition(0.5);
+            this.rightControlServo.setPosition(0.5);
+        }
+
     }
 
     @Override
@@ -90,6 +101,7 @@ public class BiobuzzTeleop extends AbstractTeleop {
 
     @Override
     public void onOperatorGamePadEvent(int button, boolean isPressed) {
+
 
     }
 
