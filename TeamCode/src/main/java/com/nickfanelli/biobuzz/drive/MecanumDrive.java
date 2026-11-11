@@ -7,6 +7,8 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class MecanumDrive extends AbstractDrive {
 
+    private static final int TARGET_POS_TOLERANCE = 4;
+
     protected DcMotorEx fl;
     protected DcMotorEx fr;
     protected DcMotorEx bl;
@@ -32,6 +34,11 @@ public class MecanumDrive extends AbstractDrive {
         this.br.setDirection(isBrReversed ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
         this.fr.setDirection(isFrReversed ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
 
+        this.fl.setTargetPositionTolerance(TARGET_POS_TOLERANCE);
+        this.fr.setTargetPositionTolerance(TARGET_POS_TOLERANCE);
+        this.bl.setTargetPositionTolerance(TARGET_POS_TOLERANCE);
+        this.br.setTargetPositionTolerance(TARGET_POS_TOLERANCE);
+
     }
 
     @Override public void drive(double y, double r) { this.drive(0, y, r); }
@@ -43,10 +50,10 @@ public class MecanumDrive extends AbstractDrive {
      * @param x strafe right (+) / left (-)
      */
     public void drive(double x, double y, double r) {
-        double frontLeftPower  = -y + r + x;
-        double frontRightPower = -y - r - x;
-        double backLeftPower   = y - r + x;
-        double backRightPower  = y + r - x;
+        double frontLeftPower  = -y + r - x;
+        double frontRightPower = -y - r + x;
+        double backLeftPower   = y - r - x;
+        double backRightPower  = y + r + x;
 
         // Normalize motor powers
         double max = Math.max(
