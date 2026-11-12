@@ -20,8 +20,8 @@ public class BiobuzzAutonomousLeft extends AbstractAutonomous {
 
     private Servo leftControlServo;
     private Servo rightControlServo;
-    private Servo finalLeftControlServo;
-    private Servo finalRightControlServo;
+    private Servo mid1Servo;
+    private Servo mid2Servo;
 
     @Override
     public void onInitialize() {
@@ -35,10 +35,10 @@ public class BiobuzzAutonomousLeft extends AbstractAutonomous {
         this.leftControlServo = super.hardwareMap.get(Servo.class, "lcServo");
         this.rightControlServo = super.hardwareMap.get(Servo.class, "rcServo");
 
-        this.finalLeftControlServo = super.hardwareMap.get(Servo.class, "flServo");
-        this.finalLeftControlServo.setDirection(Servo.Direction.REVERSE);
+        this.mid1Servo = super.hardwareMap.get(Servo.class, "mid1");
+        this.mid1Servo.setDirection(Servo.Direction.REVERSE);
 
-        this.finalRightControlServo = super.hardwareMap.get(Servo.class, "frServo");
+        this.mid2Servo = super.hardwareMap.get(Servo.class, "mid2");
 
     }
 
@@ -67,8 +67,8 @@ public class BiobuzzAutonomousLeft extends AbstractAutonomous {
         // Turn on all intake components
         this.leftControlServo.setPosition(0.0);
         this.rightControlServo.setPosition(1.0);
-        this.finalLeftControlServo.setPosition(0.0);
-        this.finalRightControlServo.setPosition(0.0);
+        this.mid1Servo.setPosition(0.0);
+        this.mid2Servo.setPosition(0.0);
         this.intakeMotor.setPower(1.0);
 
         waitMillis(10000);
@@ -76,8 +76,8 @@ public class BiobuzzAutonomousLeft extends AbstractAutonomous {
         // Turn off all intake components
         this.leftControlServo.setPosition(0.5);
         this.rightControlServo.setPosition(0.5);
-        this.finalLeftControlServo.setPosition(0.5);
-        this.finalRightControlServo.setPosition(0.5);
+        this.mid1Servo.setPosition(0.5);
+        this.mid2Servo.setPosition(0.5);
         this.intakeMotor.setPower(0.0);
         this.launcherMotor.setPower(0.0);
 
