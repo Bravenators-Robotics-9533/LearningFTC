@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 @Autonomous(name="BiobuzzAutonomous", group="nickfanelli.teaching")
 public class BiobuzzAutonomous extends AbstractAutonomous {
 
-    private static final double LAUNCHER_VELOCITY = 700; // rpm
+    private static final double LAUNCHER_VELOCITY = 650; // rpm
 
     private AutonomousMecanumDrive drive;
 
@@ -42,13 +42,15 @@ public class BiobuzzAutonomous extends AbstractAutonomous {
 
         this.drive.turnByDegrees(0.5, TurnDirection.CLOCKWISE, 90);
 
-        this.drive.driveByInches(0.5, 26); // Move to shoot location
+        this.drive.driveByInches(0.5, 24); // Move to shoot location
 
         this.drive.turnByDegrees(0.5, TurnDirection.COUNTER_CLOCKWISE, 90); // Turn to shoot
 
         this.launcherMotor.setVelocity(LAUNCHER_VELOCITY);
 
-        this.drive.driveByInches(0.5, -3.0); // Back Up
+        this.drive.driveByInches(0.5, -5); // Back Up
+
+        waitMillis(750);
 
         // Turn on all intake components
         this.intakeMotor.setPower(1.0);
@@ -61,7 +63,7 @@ public class BiobuzzAutonomous extends AbstractAutonomous {
 
         this.drive.turnByDegrees(0.75, TurnDirection.COUNTER_CLOCKWISE, 90);
 
-        this.drive.driveByInches(1.0, 26.5); // Drive to Park Location
+        this.drive.driveByInches(1.0, 28.5); // Drive to Park Location
 
         this.drive.turnByDegrees(1.0, TurnDirection.CLOCKWISE, 90);
 

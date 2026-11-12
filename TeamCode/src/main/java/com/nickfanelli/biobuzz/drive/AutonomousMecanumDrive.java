@@ -16,7 +16,7 @@ public class AutonomousMecanumDrive extends MecanumDrive {
 
     private static final double TICKS_PER_IN = ((TICKS_PER_MOTOR_REV * GEAR_REDUCTION) / WHEEL_CIRCUMFERENCE) - 1.976175;
 
-    private static final double TRACK_DISTANCE = 14.25; // in
+    private static final double TRACK_DISTANCE = 14; // in
     private static final double TURN_CIRCUMFERENCE = TRACK_DISTANCE * Math.PI;
 
     protected final LinearOpMode opMode;
