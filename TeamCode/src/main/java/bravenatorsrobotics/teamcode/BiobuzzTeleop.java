@@ -77,8 +77,8 @@ public class BiobuzzTeleop extends AbstractTeleop {
         if(gamepad2.b) {
             this.launcherMotor.setVelocity(LAUNCHER_VELOCITY);
 
-            this.mid1Servo.setPosition(0.0);
-            this.mid2Servo.setPosition(0.0);
+            this.mid1Servo.setPosition(1.0);
+            this.mid2Servo.setPosition(1.0);
         } else {
             this.launcherMotor.setPower(0.0);
 
