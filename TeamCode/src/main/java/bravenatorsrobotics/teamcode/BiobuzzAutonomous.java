@@ -21,7 +21,7 @@ public class BiobuzzAutonomous extends AbstractAutonomous {
     @Override
     public void onInitialize() {
         this.drive = new AutonomousMecanumDrive(this);
-        this.drive.initializeDrive(super.hardwareMap, false, false, false, false);
+        this.drive.initializeDrive(super.hardwareMap, true, true, false, false);
 
         this.intakeMotor = super.hardwareMap.get(DcMotorEx.class, "intake1");
         this.intakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -38,40 +38,40 @@ public class BiobuzzAutonomous extends AbstractAutonomous {
     @Override
     public void onStart() {
 
-        this.drive.driveByInches(0.5, 8); // Move off wall
+        this.drive.driveByInches(0.5, 100); // Move off wall
 
-        this.drive.turnByDegrees(0.5, TurnDirection.CLOCKWISE, 90);
-
-        this.drive.driveByInches(0.5, 24); // Move to shoot location
-
-        this.drive.turnByDegrees(0.5, TurnDirection.COUNTER_CLOCKWISE, 90); // Turn to shoot
-
-        this.launcherMotor.setVelocity(LAUNCHER_VELOCITY);
-
-        this.drive.driveByInches(0.5, -5); // Back Up
-
-        waitMillis(750);
-
-        // Turn on all intake components
-        this.intakeMotor.setPower(1.0);
-
-        waitMillis(10000);
-
-        // Turn off all intake components
-        this.intakeMotor.setPower(0.0);
-        this.launcherMotor.setPower(0.0);
-
-        this.drive.turnByDegrees(0.75, TurnDirection.COUNTER_CLOCKWISE, 90);
-
-        this.drive.driveByInches(1.0, 28.5); // Drive to Park Location
-
-        this.drive.turnByDegrees(1.0, TurnDirection.CLOCKWISE, 90);
-
-        this.drive.driveByInches(1.0, 74.0); // Drive to Park Location
-
-        this.drive.turnByDegrees(1.0, TurnDirection.COUNTER_CLOCKWISE, 90);
-
-        this.drive.driveByInches(1.0, 16.0); // Drive to Park Location
+//        this.drive.turnByDegrees(0.5, TurnDirection.CLOCKWISE, 90);
+//
+//        this.drive.driveByInches(0.5, 24); // Move to shoot location
+//
+//        this.drive.turnByDegrees(0.5, TurnDirection.COUNTER_CLOCKWISE, 90); // Turn to shoot
+//
+//        this.launcherMotor.setVelocity(LAUNCHER_VELOCITY);
+//
+//        this.drive.driveByInches(0.5, -5); // Back Up
+//
+//        waitMillis(750);
+//
+//        // Turn on all intake components
+//        this.intakeMotor.setPower(1.0);
+//
+//        waitMillis(10000);
+//
+//        // Turn off all intake components
+//        this.intakeMotor.setPower(0.0);
+//        this.launcherMotor.setPower(0.0);
+//
+//        this.drive.turnByDegrees(0.75, TurnDirection.COUNTER_CLOCKWISE, 90);
+//
+//        this.drive.driveByInches(1.0, 28.5); // Drive to Park Location
+//
+//        this.drive.turnByDegrees(1.0, TurnDirection.CLOCKWISE, 90);
+//
+//        this.drive.driveByInches(1.0, 74.0); // Drive to Park Location
+//
+//        this.drive.turnByDegrees(1.0, TurnDirection.COUNTER_CLOCKWISE, 90);
+//
+//        this.drive.driveByInches(1.0, 16.0); // Drive to Park Location
 
 
     }
