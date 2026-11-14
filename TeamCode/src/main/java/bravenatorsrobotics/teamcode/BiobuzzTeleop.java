@@ -12,7 +12,7 @@ import com.nickfanelli.biobuzz.gamepad.FtcGamePad;
 @TeleOp(name="BiobuzzTeleop", group="nickfanelli.teaching")
 public class BiobuzzTeleop extends AbstractTeleop {
 
-    private static final double LAUNCHER_VELOCITY = 965; // rpm =
+    private static final double LAUNCHER_VELOCITY = 985; // rpm =
 
     private final MecanumDrive drive;
 
@@ -21,6 +21,8 @@ public class BiobuzzTeleop extends AbstractTeleop {
     private DcMotorEx intakeMotor;
     private DcMotorEx launcherMotor;
     private DcMotorEx secondaryIntakeMotor;
+
+    private Servo lcServo;
 
     private Servo tailServo;
 
@@ -37,6 +39,7 @@ public class BiobuzzTeleop extends AbstractTeleop {
         this.secondaryIntakeMotor = super.hardwareMap.get(DcMotorEx.class, "intake2");
 
         this.launcherMotor = super.hardwareMap.get(DcMotorEx.class, "launcher");
+        this.lcServo = super.hardwareMap.get(Servo.class, "lcServo");
 
         this.drive.initializeDrive(super.hardwareMap, false, true, true, true);
         this.mecanumDriveControl = new MecanumDriveTeleopControl(this, this.drive);
@@ -63,8 +66,10 @@ public class BiobuzzTeleop extends AbstractTeleop {
 
         if(gamepad2.right_bumper) {
             this.launcherMotor.setVelocity(LAUNCHER_VELOCITY);
+            this.lcServo.setPosition(0.0);
         } else {
             this.launcherMotor.setPower(0.0);
+            this.lcServo.setPosition(0.5);
         }
 
         if(gamepad2.dpad_left) {
