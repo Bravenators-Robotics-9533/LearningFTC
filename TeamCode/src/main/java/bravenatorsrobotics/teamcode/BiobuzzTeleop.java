@@ -12,7 +12,7 @@ import com.nickfanelli.biobuzz.gamepad.FtcGamePad;
 @TeleOp(name="BiobuzzTeleop", group="nickfanelli.teaching")
 public class BiobuzzTeleop extends AbstractTeleop {
 
-    private static final double LAUNCHER_VELOCITY = 1275; // rpm =
+    private static final double LAUNCHER_VELOCITY = 965; // rpm =
 
     private final MecanumDrive drive;
 
@@ -21,11 +21,6 @@ public class BiobuzzTeleop extends AbstractTeleop {
     private DcMotorEx intakeMotor;
     private DcMotorEx launcherMotor;
     private DcMotorEx secondaryIntakeMotor;
-
-    private Servo leftControlServo;
-    private Servo rightControlServo;
-    private Servo mid1Servo;
-    private Servo mid2Servo;
 
     private Servo tailServo;
 
@@ -45,14 +40,6 @@ public class BiobuzzTeleop extends AbstractTeleop {
 
         this.drive.initializeDrive(super.hardwareMap, false, true, true, true);
         this.mecanumDriveControl = new MecanumDriveTeleopControl(this, this.drive);
-
-        this.leftControlServo = super.hardwareMap.get(Servo.class, "lcServo");
-        this.rightControlServo = super.hardwareMap.get(Servo.class, "rcServo");
-
-        this.mid1Servo = super.hardwareMap.get(Servo.class, "mid1");
-        this.mid1Servo.setDirection(Servo.Direction.REVERSE);
-
-        this.mid2Servo = super.hardwareMap.get(Servo.class, "mid2");
 
         this.tailServo = super.hardwareMap.get(Servo.class, "tail");
 
@@ -74,26 +61,16 @@ public class BiobuzzTeleop extends AbstractTeleop {
             this.intakeMotor.setPower(0.0);
         }
 
-        if(gamepad2.b) {
+        if(gamepad2.right_bumper) {
             this.launcherMotor.setVelocity(LAUNCHER_VELOCITY);
-
-            this.mid1Servo.setPosition(1.0);
-            this.mid2Servo.setPosition(1.0);
         } else {
             this.launcherMotor.setPower(0.0);
-
-            this.mid1Servo.setPosition(0.5);
-            this.mid2Servo.setPosition(0.5);
         }
 
-        if(this.gamepad2.b || this.gamepad2.a) {
+        if(gamepad2.dpad_left) {
             this.secondaryIntakeMotor.setPower(1.0);
-            this.leftControlServo.setPosition(0.0);
-            this.rightControlServo.setPosition(1.0);
         } else {
             this.secondaryIntakeMotor.setPower(0.0);
-            this.leftControlServo.setPosition(0.5);
-            this.rightControlServo.setPosition(0.5);
         }
 
     }
