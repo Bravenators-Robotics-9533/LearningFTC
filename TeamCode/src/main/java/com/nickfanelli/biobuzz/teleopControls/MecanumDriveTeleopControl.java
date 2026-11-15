@@ -17,7 +17,7 @@ public class MecanumDriveTeleopControl extends AbstractTeleopControl {
     @Override
     public void update() {
 
-        double x = Range.clip(
+        double x = -Range.clip(
                 super.opMode.gamepad1.left_stick_x
                 + super.opMode.gamepad1.right_trigger - super.opMode.gamepad1.left_trigger,
                 -1.0, 1.0

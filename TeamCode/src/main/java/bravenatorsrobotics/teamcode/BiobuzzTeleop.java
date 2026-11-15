@@ -31,6 +31,7 @@ public class BiobuzzTeleop extends AbstractTeleop {
         this.intakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         this.launcherMotor = super.hardwareMap.get(DcMotorEx.class, "launcher");
+        this.launcherMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         this.drive.initializeDrive(super.hardwareMap, true, true, false, false);
         this.mecanumDriveControl = new MecanumDriveTeleopControl(this, this.drive);

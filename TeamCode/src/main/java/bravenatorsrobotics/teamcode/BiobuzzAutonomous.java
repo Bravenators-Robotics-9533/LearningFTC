@@ -26,6 +26,8 @@ public class BiobuzzAutonomous extends AbstractAutonomous {
         this.intakeMotor = super.hardwareMap.get(DcMotorEx.class, "intake1");
         this.intakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         this.launcherMotor = super.hardwareMap.get(DcMotorEx.class, "launcher");
+        this.launcherMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        
     }
 
     @Override
