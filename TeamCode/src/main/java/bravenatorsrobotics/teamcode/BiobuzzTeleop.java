@@ -58,6 +58,17 @@ public class BiobuzzTeleop extends AbstractTeleop {
 
         this.mecanumDriveControl.update();
 
+        // First
+        if(gamepad2.dpad_down) {
+            this.secondaryIntakeMotor.setPower(-1.0);
+            this.lcServo.setPosition(1.0);
+            this.intakeMotor.setPower(-1.0);
+        } else if(!gamepad2.right_bumper) {
+            this.secondaryIntakeMotor.setPower(0.0);
+            this.lcServo.setPosition(0.5);
+            this.intakeMotor.setPower(0.0);
+        }
+
         if(this.gamepad2.a) {
             this.intakeMotor.setPower(1.0);
         } else {

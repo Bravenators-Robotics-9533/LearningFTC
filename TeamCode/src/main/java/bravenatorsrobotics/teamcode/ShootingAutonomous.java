@@ -8,20 +8,19 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Autonomous(name="LEFT BiobuzzAutonomous", group="nickfanelli.teaching")
-public class BiobuzzAutonomousLeft extends AbstractAutonomous {
+@Autonomous(name="Shooting Autonomous", group="nickfanelli.teaching")
+public class ShootingAutonomous extends AbstractAutonomous {
 
-    private static final double LAUNCHER_VELOCITY = 1100; // rpm
+    private static final double LAUNCHER_VELOCITY = 985; // rpm
 
     private AutonomousMecanumDrive drive;
 
     private DcMotorEx intakeMotor;
+    private DcMotorEx secondaryIntakeMotor;
+
     private DcMotorEx launcherMotor;
 
-    private Servo leftControlServo;
-    private Servo rightControlServo;
-    private Servo mid1Servo;
-    private Servo mid2Servo;
+    private Servo lcServo;
 
     @Override
     public void onInitialize() {
@@ -30,15 +29,12 @@ public class BiobuzzAutonomousLeft extends AbstractAutonomous {
 
         this.intakeMotor = super.hardwareMap.get(DcMotorEx.class, "intake");
         this.intakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        this.secondaryIntakeMotor = super.hardwareMap.get(DcMotorEx.class, "intake2");
+
         this.launcherMotor = super.hardwareMap.get(DcMotorEx.class, "launcher");
 
-        this.leftControlServo = super.hardwareMap.get(Servo.class, "lcServo");
-        this.rightControlServo = super.hardwareMap.get(Servo.class, "rcServo");
-
-        this.mid1Servo = super.hardwareMap.get(Servo.class, "mid1");
-        this.mid1Servo.setDirection(Servo.Direction.REVERSE);
-
-        this.mid2Servo = super.hardwareMap.get(Servo.class, "mid2");
+        this.lcServo = super.hardwareMap.get(Servo.class, "lcServo");
 
     }
 
@@ -62,36 +58,36 @@ public class BiobuzzAutonomousLeft extends AbstractAutonomous {
 
         this.launcherMotor.setVelocity(LAUNCHER_VELOCITY);
 
-        this.drive.driveByInches(1.0, -5.0); // Back Up
+        this.drive.driveByInches(1.0, -9.0); // Back Up
+
+        waitMillis(500);
 
         // Turn on all intake components
-        this.leftControlServo.setPosition(0.0);
-        this.rightControlServo.setPosition(1.0);
-        this.mid1Servo.setPosition(0.0);
-        this.mid2Servo.setPosition(0.0);
+        this.lcServo.setPosition(0.0);
         this.intakeMotor.setPower(1.0);
+        this.secondaryIntakeMotor.setPower(1.0);
 
         waitMillis(10000);
 
         // Turn off all intake components
-        this.leftControlServo.setPosition(0.5);
-        this.rightControlServo.setPosition(0.5);
-        this.mid1Servo.setPosition(0.5);
-        this.mid2Servo.setPosition(0.5);
+        this.lcServo.setPosition(0.5);
         this.intakeMotor.setPower(0.0);
         this.launcherMotor.setPower(0.0);
+        this.secondaryIntakeMotor.setPower(0.0);
+
+        this.drive.driveByInches(1.0, 7.0); // Move Up
 
         this.drive.turnByDegrees(1.0, TurnDirection.COUNTER_CLOCKWISE, 90);
 
-        this.drive.driveByInches(1.0, 24.0); // Drive to Park Location
+        this.drive.driveByInches(1.0, 28.0); // Drive to Park Location
 
         this.drive.turnByDegrees(1.0, TurnDirection.CLOCKWISE, 90);
 
-        this.drive.driveByInches(1.0, 74.0); // Drive to Park Location
+        this.drive.driveByInches(1.0, 76.0); // Drive to Park Location
 
         this.drive.turnByDegrees(1.0, TurnDirection.COUNTER_CLOCKWISE, 90);
 
-        this.drive.driveByInches(1.0, 16.0); // Drive to Park Location
+        this.drive.driveByInches(1.0, 15.0); // Drive to Park Location
 
 
 
