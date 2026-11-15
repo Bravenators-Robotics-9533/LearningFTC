@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 @Autonomous(name="Shooting Autonomous", group="nickfanelli.teaching")
 public class ShootingAutonomous extends AbstractAutonomous {
 
-    private static final double LAUNCHER_VELOCITY = 985; // rpm
+    private static final double LAUNCHER_VELOCITY = 1000; // rpm
 
     private AutonomousMecanumDrive drive;
 
