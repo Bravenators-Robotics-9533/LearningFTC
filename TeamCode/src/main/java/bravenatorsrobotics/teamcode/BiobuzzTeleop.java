@@ -12,7 +12,7 @@ import com.nickfanelli.biobuzz.gamepad.FtcGamePad;
 @TeleOp(name="BiobuzzTeleop", group="nickfanelli.teaching")
 public class BiobuzzTeleop extends AbstractTeleop {
 
-    private static final double LAUNCHER_VELOCITY = 1000; // rpm =
+    private static final double LAUNCHER_VELOCITY = 1045; // rpm =
 
     private final MecanumDrive drive;
 

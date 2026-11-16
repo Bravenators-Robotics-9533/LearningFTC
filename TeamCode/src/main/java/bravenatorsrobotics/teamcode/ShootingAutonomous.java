@@ -60,7 +60,7 @@ public class ShootingAutonomous extends AbstractAutonomous {
 
         this.drive.driveByInches(1.0, -9.0); // Back Up
 
-        waitMillis(500);
+        waitMillis(1000);
 
         // Turn on all intake components
         this.lcServo.setPosition(0.0);
